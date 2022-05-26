@@ -146,6 +146,8 @@ $RECYCLE.BIN/
 
 # Rider cache directory
 .idea/
+/.vscode
+.DS_Store
 
 *.idea
 [Jj]et[Bb]rains/
