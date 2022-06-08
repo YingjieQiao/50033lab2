@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
     private Rigidbody2D marioBody;
+    private Animator marioAnimator;
+    private AudioSource marioAudio;
+    private ParticleSystem dustCloud;
 
     void  Start()
     {
@@ -24,20 +27,33 @@ public class PlayerController : MonoBehaviour
         Application.targetFrameRate =  30;
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
+        marioAnimator  =  GetComponent<Animator>();
+        marioAudio = GetComponent<AudioSource>();
+
+        GameObject g = GameObject.Find("DustCloud");
+        dustCloud = g.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
+        marioAnimator.SetBool("onGround", onGroundState);
         // toggle state
         if (Input.GetKeyDown("a") && faceRightState){
           faceRightState = false;
           marioSprite.flipX = true;
+          if (Mathf.Abs(marioBody.velocity.x) >  1.0) {
+            marioAnimator.SetTrigger("onSkid");
+          }
         }
 
         if (Input.GetKeyDown("d") && !faceRightState){
           faceRightState = true;
           marioSprite.flipX = false;
+          if (Mathf.Abs(marioBody.velocity.x) >  1.0) {
+            marioAnimator.SetTrigger("onSkid");
+          }
         }
 
         // when jumping, and Gomba is near Mario and we haven't registered our score
@@ -83,6 +99,7 @@ public class PlayerController : MonoBehaviour
           onGroundState = true; // back on ground
           countScoreState = false; // reset score state
           scoreText.text = "Score: " + score.ToString();
+          dustCloud.Play();
         };
     }
 
@@ -95,4 +112,8 @@ public class PlayerController : MonoBehaviour
       }
     }
 
+    void  PlayJumpSound()
+    {
+	    marioAudio.PlayOneShot(marioAudio.clip);
+    }
 }
