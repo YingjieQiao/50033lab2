@@ -6,7 +6,8 @@ public class QuestionBoxController : MonoBehaviour
 {
     public  Rigidbody2D rigidBody;
     public  SpringJoint2D springJoint;
-    public  GameObject consummablePrefab; // the spawned mushroom prefab
+    public  GameObject greenmushPrefab; 
+    public GameObject redmushPrefab;
     public  SpriteRenderer spriteRenderer;
     public  Sprite usedQuestionBox; // the sprite that indicates empty box instead of a question mark
 
@@ -27,12 +28,13 @@ public class QuestionBoxController : MonoBehaviour
 
     void  OnCollisionEnter2D(Collision2D col)
     {
+        GameObject consumablePrefab = Random.Range(0, 2) ==  0  ?  greenmushPrefab  :  redmushPrefab;
         if (col.gameObject.CompareTag("Player") &&  !hit){
             hit  =  true;
             // ensure that we move this object sufficiently 
             rigidBody.AddForce(new  Vector2(0, rigidBody.mass*20), ForceMode2D.Impulse);
             // spawn mushroom
-            Instantiate(consummablePrefab, new  Vector3(this.transform.position.x, this.transform.position.y  +  1.0f, this.transform.position.z), Quaternion.identity);
+            Instantiate(consumablePrefab, new  Vector3(this.transform.position.x, this.transform.position.y  +  1.0f, this.transform.position.z), Quaternion.identity);
             // begin check to disable object's spring and rigidbody
             StartCoroutine(DisableHittable());
         }

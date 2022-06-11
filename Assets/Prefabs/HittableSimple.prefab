@@ -165,7 +165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 7090245745413781242}
   springJoint: {fileID: 7090245745413781240}
-  consummablePrefab: {fileID: 8933456095253973997, guid: 690aaf0634da54580aa2d541f6bf8912, type: 3}
+  greenmushPrefab: {fileID: 4430734816264014782, guid: 62137e58acc5f4689b81cb157ac45c53, type: 3}
+  redmushPrefab: {fileID: 6595520210859208621, guid: 5eef2c9b495064928aa3ad91b79aa692, type: 3}
   spriteRenderer: {fileID: 7090245745413781243}
   usedQuestionBox: {fileID: 21300054, guid: 855dc7396df3c4e49ac4d21234eac5e1, type: 3}
   initialPosition: {x: 0, y: 0, z: 0}

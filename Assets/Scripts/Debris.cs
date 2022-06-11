@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Debris : MonoBehaviour
 {
-
     private  Rigidbody2D rigidBody;
     private  Vector3 scaler;
+
     // Start is called before the first frame update
-    void  Start()
+    void Start()
     {
         // we want the object to have a scale of 0 (disappear) after 30 frames. 
         scaler  =  transform.localScale  / (float) 30 ;

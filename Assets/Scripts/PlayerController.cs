@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
 
         GameObject g = GameObject.Find("DustCloud");
         dustCloud = g.GetComponent<ParticleSystem>();
+
+        GameManager.OnPlayerDeath  +=  PlayerDiesSequence;
+
     }
 
     // Update is called once per frame
@@ -116,4 +119,12 @@ public class PlayerController : MonoBehaviour
     {
 	    marioAudio.PlayOneShot(marioAudio.clip);
     }
+
+    void  PlayerDiesSequence(){
+      // Mario dies
+      Debug.Log("Mario dies");
+      // do whatever you want here, animate etc
+      // ...
+    }
+
 }
