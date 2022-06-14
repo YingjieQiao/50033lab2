@@ -18,23 +18,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         spawnManager = spawnManagerObject.GetComponent<SpawnManager>();
-
-        gameoverObjects = GameObject.FindGameObjectsWithTag("ShowOnGameover");
-        foreach(GameObject g in gameoverObjects){
-			g.SetActive(false);
-		}
-
-        // subscribe to player event
         GameManager.OnPlayerDeath  +=  GameoverSequence;
-        SceneManager.sceneLoaded += OnSceneLoaded;
+
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        gameoverObjects = GameObject.FindGameObjectsWithTag("ShowOnGameover");
-        foreach(GameObject g in gameoverObjects){
-			g.SetActive(false);
-		}
-    }
 
     // Update is called once per frame
     void Update()
@@ -53,7 +40,6 @@ public class GameManager : MonoBehaviour
     }
 
     public delegate void gameEvent();
-
     public  static  event  gameEvent OnPlayerDeath;
 
     void  GameoverSequence(){
@@ -69,6 +55,5 @@ public class GameManager : MonoBehaviour
 			g.SetActive(true);
 		}
     }
-
 
 }

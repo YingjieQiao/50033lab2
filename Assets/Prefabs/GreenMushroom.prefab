@@ -146,5 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b001e5280a342c088cd744e90009a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameConstants: {fileID: 0}
+  gameConstants: {fileID: 11400000, guid: 12c3dc5ed16434f0db7d4b3a4d79a768, type: 2}
   t: {fileID: 0}

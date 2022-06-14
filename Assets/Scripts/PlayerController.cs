@@ -69,6 +69,14 @@ public class PlayerController : MonoBehaviour
               Debug.Log(score);
           }
         }
+
+        if (Input.GetKeyDown("z")){
+          CentralManager.centralManagerInstance.consumePowerup(KeyCode.Z,this.gameObject);
+        }
+
+        if (Input.GetKeyDown("x")){
+          CentralManager.centralManagerInstance.consumePowerup(KeyCode.X,this.gameObject);
+        }
     }
 
     // FixedUpdate may be called once per frame. See documentation for details.
@@ -101,18 +109,18 @@ public class PlayerController : MonoBehaviour
         {
           onGroundState = true; // back on ground
           countScoreState = false; // reset score state
-          scoreText.text = "Score: " + score.ToString();
+          // scoreText.text = "Score: " + score.ToString();
           dustCloud.Play();
         };
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-      if (other.gameObject.CompareTag("Enemy"))
-      {
-          Debug.Log("Collided with Gomba!");
-          SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-      }
+      // if (other.gameObject.CompareTag("Enemy"))
+      // {
+      //     Debug.Log("Collided with Gomba!");
+      //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+      // }
     }
 
     void  PlayJumpSound()

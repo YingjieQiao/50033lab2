@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
 
     private Rigidbody2D enemyBody;
     public  GameConstants gameConstants;
+    public CentralManager centralManagerInstance;
 
     // Start is called before the first frame update
     void Start()
@@ -83,7 +84,7 @@ public class EnemyController : MonoBehaviour
     if (other.gameObject.tag  ==  "Player"){
       // check if collides on top
       float yoffset = (other.transform.position.y  -  this.transform.position.y);
-      if (yoffset  >  0){
+      if (yoffset  >  0.75f) {
           KillSelf();
       }
       else{

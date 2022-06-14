@@ -8,6 +8,7 @@ public class BreakBrick : MonoBehaviour
     private bool broken = false;
     public GameObject prefab;
     private AudioSource breakbrickAudio;
+	public CentralManager centralManagerInstance;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class BreakBrick : MonoBehaviour
         if (col.gameObject.CompareTag("Player") && !broken) {
             broken  =  true;
             breakbrickAudio.PlayOneShot(breakbrickAudio.clip);
+            CentralManager.centralManagerInstance.increaseScore();
             // assume we have 5 debris per box
             for (int x = 0; x < 5; x++) {
                 Instantiate(prefab, transform.position, Quaternion.identity);
